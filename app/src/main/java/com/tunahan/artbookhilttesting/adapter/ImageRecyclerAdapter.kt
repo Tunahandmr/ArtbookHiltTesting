@@ -40,14 +40,14 @@ class ImageRecyclerAdapter @Inject constructor(
         return ImageViewHolder(view)
     }
 
-    fun setOnItemClickLstener(listener: (String)->Unit){
+    fun setOnItemClickListener(listener: (String)->Unit){
         onItemClickListener = listener
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val url = images[position]
         glide.load(url).into(holder.binding.singleArtImageView)
-        setOnItemClickLstener {
+        holder.itemView.setOnClickListener {
             onItemClickListener?.let {
                 it(url)
             }
